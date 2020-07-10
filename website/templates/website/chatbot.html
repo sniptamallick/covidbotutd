@@ -1,0 +1,133 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"/>
+    <link rel="stylesheet" href="{% static 'css/chatbot.css' %}">
+  
+    <head>
+        <nav class="navbar navbar-expand-sm">
+            <a href="/" style = "color: white; font-size: 20px"> back </a>
+        </nav>
+    </head>
+
+    <body>
+
+      <div class = "container-fluid" style="background-color: black;">
+        <div class = "row">
+              <div class = "col-md-8 offset-md-2" id = "input">
+                          <div class = "innerchat">
+                          <ul id = "chat" class="list-group chat-log js-chat-log">
+                            <div>
+                            <li id = "botOutput" class="list-group-item animate__animated animate__fadeIn"> Hi! I'm CovidBot! How can I help you?</li>
+                          </div>
+                          </ul>
+                        </div>
+                    <br>
+                        {% csrf_token %}
+                          <div>
+                            <div class="input-group mb-3">
+                              <input id="message" type="text" class="form-control" placeholder = "Type message here" name="message" value="{{ message }}">
+                                <div class="input-group-append">
+                                  <button class="btn btn-secondary js-say">Send</button>
+                                </div>
+                             </div>
+                          </div>
+              </div>
+        </div>
+
+    
+    <!-- Optional JavaScript -->
+    <script src="{% static 'js/jquery-3.5.1.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+    <script src="{% static 'js/js.cookie.js' %}"></script>
+    <script>
+
+      var chatterbotUrl = '{% url "chatbot" %}';
+      var csrftoken = Cookies.get('csrftoken');
+
+      function csrfSafeMethod(method) {
+        // these HTTP methods do not require CSRF protection
+        return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+      }
+
+      $.ajaxSetup({
+        beforeSend: function(xhr, settings) {
+          if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+            xhr.setRequestHeader("X-CSRFToken", csrftoken);
+          }
+        }
+      });
+
+      var $chatlog = $('.innerchat');
+      var $chatlog2 = $('.innerchat');
+      var $input = $("#message");
+      var $sayButton = $('.js-say');
+      var inputData;
+
+      let messages = []
+
+      function submitInput() {
+
+        inputData = {
+          'text': $input.val()
+        }
+
+        // Display the user's input on the web page
+        printUserInput(inputData);
+        messages.push(inputData)
+
+        messages.forEach(function(value, index, array)
+        {
+              $.get("get", {msg: inputData}).done(function(data) {
+                createBotRow(data);
+
+                // Clear the input field
+                $input.val('');
+
+                // Scroll to the bottom of the chat interface
+                $chatlog2[0].scrollTop = $chatlog2[0].scrollHeight;
+
+            });
+        })
+
+        messages = []
+
+      }
+
+      // Display the user's input on the web page
+      function printUserInput(userinput)
+      {
+          createUserRow(inputData.text);
+          $chatlog[0].scrollTop = $chatlog[0].scrollHeight;
+      }
+
+      function createUserRow(text) {
+        var $row = $('<br><br><li id = "userOutput" class="list-group-item animate__animated animate__fadeIn"></li>');
+
+        $row.text(text);
+        $chatlog.append($row);
+      }
+
+      function createBotRow(text) {
+        var $row = $('<br><br><li id = "botOutput" class="list-group-item animate__animated animate__fadeIn"></li>');
+        $row.text(text);
+        $chatlog2.append($row);
+      }
+      
+      $sayButton.click(function() {
+
+          submitInput();
+      });
+
+      $input.keydown(function(event) {
+        // Submit the input when the enter button is pressed
+        if (event.keyCode == 13) {
+          submitInput();
+        }});
+
+    </script>
+    </body>
+</html>

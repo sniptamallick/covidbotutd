@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital@0;1&display=swap');
+
+*{
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
+    overflow-y: hidden;
+   
+}
+
+*:focus {
+    outline: 0 !important;
+}
+
+.masthead 
+{
+    height: 90vh;
+    min-height: 500px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.masthead .btn
+{
+    background-color: #FFFFFF;
+    padding: 20px 50px;
+    border-radius: 25px;
+    font-size: 45px;
+    color: black; 
+}
+
+.navbar
+{
+    padding: 40px; 
+    background-color: #000000;
+}
+
+.header, .header2
+{
+    font-size: 45px;
+    color: white;
+    font-family: 'Libre Baskerville',;
+}
+
+#brand
+{
+    font-size: 40px;
+    color: white; 
+}
+
+.nav-item
+{
+    font-size: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.nav-link
+{
+    color: gray; 
+}
+
+.nav-link:hover
+{
+    color: white;
+}

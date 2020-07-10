@@ -1,0 +1,73 @@
+{% load static %}
+<!doctype html>
+<html lang="en" id = "hello">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="UTD Chat Bot" content="Welcome to UTD Chat Bot!" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"/>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <title>CovidBot</title>
+
+    </head>
+
+    <body>
+
+        <!-- NavBar-->
+        <nav class="navbar navbar-expand-lg">
+          <div class="collapse navbar-collapse" id="navbarNav">
+            
+            <ul class="navbar-nav mx-auto">
+              <li class="nav-item animate__animated animate__fadeIn animate__delay-1s">
+                <a class="nav-link" href="#">about</a>
+              </li>
+              <li class="nav-item animate__animated animate__fadeIn animate__delay-1s">
+                <a class="nav-link" href="#">team</a>
+              </li>
+              <li id = "brand" class="nav-item animate__animated animate__fadeIn">
+                  <p> CovidBot</p>
+              </li>
+              <li class="nav-item animate__animated animate__fadeIn animate__delay-1s">
+                <a class="nav-link" href="#">questions</a>
+              </li>
+              <li class="nav-item animate__animated animate__fadeIn animate__delay-1s">
+                <a class="nav-link" href="#">faq</a>
+              </li>
+            </ul>
+
+          </div>
+        </nav>
+
+        <!-- Landing Page-->
+        <header class="masthead">
+          <div class="container-fluid h-100">
+            <div class="row h-100" style = "background-color:#0d1012">
+              <div class="col-sm-12">
+                <br><br><br><br>
+                <div class = "row col-md-6 offset-md-3 text-center animate__animated animate__fadeInDown animate__delay-2s">
+                  <h1 class = "header" > Want the latest UT Dallas COVID-19 Updates?</h1>
+                </div>
+                <br><br><br><br>
+                <div class = "row">
+                </div>
+                <div class = "row">
+                  <div class = "col-md-6 offset-md-3 text-center animate__animated animate__fadeIn animate__delay-3s">
+                    <a href="chatbot" class="btn">CovidBot <img src="https://img.icons8.com/nolan/64/arrow.png"/></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <script src="{% static 'js/jquery-3.5.1.min.js' %}"></script>
+        <script src="{% static 'js/bootstrap.js' %}"></script>
+
+        </script>
+    </body>
+</html>
